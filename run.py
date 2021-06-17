@@ -30,7 +30,7 @@ def choice(posts: List[PostDto], now: datetime) -> PostDto:
     post_dto = posts.pop(0)
     posts.append(post_dto)
     File_.writeList(
-        posts, 'data', f'post{now.hour}.txt', default=PostDto.to_dict)
+        posts, 'data', f'post{now.hour}.json', default=PostDto.to_dict)
     # post_dto.title = TimeZoneChina.format(now, '%Y%d%H%M%m')+' '+post_dto.title
     return post_dto
 
@@ -142,7 +142,7 @@ async def post(settings_dto: SettingsDto):
         hour = now.hour
         users: List[UserDto] = get_users()
         posts: List[PostDto] = File_.read_list(
-            f"data/post{hour}.txt", object_hook=PostDto.from_dict)
+            f"data/post{hour}.json", object_hook=PostDto.from_dict)
         post = Post()
         for user_dto in users:
             await login(settings_dto, user_dto, page)
