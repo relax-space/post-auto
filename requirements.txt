@@ -2,3 +2,4 @@ requests
 click
 pillow
 pyppeteer
+async_retrying

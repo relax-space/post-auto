@@ -6,6 +6,7 @@ import random
 import traceback
 from typing import List
 
+from async_retrying import retry
 from pyppeteer import launch
 
 from post.post import Post
@@ -75,6 +76,7 @@ def get_users():
         return users
 
 
+@retry(attempts=3)
 async def login(settings_dto: SettingsDto, user_dto: UserDto, page):
     await asyncio.gather(
         page.goto(f'{settings_dto.post_host}/login/index.html'),
