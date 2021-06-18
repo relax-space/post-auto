@@ -44,9 +44,9 @@ def get_users():
         "data/user.json", object_hook=UserDto.from_dict)
     now = TimeZoneChina.now()
     weekday = now.isoweekday()
-    if weekday == 1:
+    if weekday == 1 or weekday == 6:
         return users
-    elif weekday == 2:
+    elif weekday == 2 or weekday == 7:
         user_dto = users.pop(0)
         users.append(user_dto)
         return users
