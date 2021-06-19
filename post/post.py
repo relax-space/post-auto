@@ -68,8 +68,9 @@ class Post:
         await self.select('#expect_pay_time', post_dto.expect_pay_time, page)
 
         await self.radio('#form_hunt_post > p:nth-child(13) > label', post_dto.yeji_needs, page)
+        detail = "深圳市星辰信息服务有限公司合作流程： \n1、费用一次付清 \n2、职称只用于资质升级和年检 \n3、职称不得用于招投标活动，自己要求挂项目的除外 \n4、妥善保管工程师原件及其他有关材料 \n\n有讠正人才请通过以下方式联系 \n联系人：王工 \n微信：147-7496-9229 \n电话：147-7496-9229 \n在线扣扣：2853-0125-34 \n微信扫一扫，及时了解投递状态"
 
-        await page.type('#detail_info', post_dto.detail_info)
+        await page.type('#detail_info', detail)
 
         code = Code()
         v_code = await code.fetch_captcha(settings_dto, ua, page)
@@ -93,8 +94,7 @@ class Post:
         msg += f'证书用途:{post_dto.cert_use}\n'
         msg += f'职位薪资:{post_dto.expect_pay}/{post_dto.expect_pay_time}\n'
         msg += f'业绩要求:{post_dto.yeji_needs}\n'
-
-        msg += f'详细说明:{post_dto.detail_info}\n'
+        msg += f'详细说明:{detail}\n'
 
         send_ding_talk_msg(
             settings_dto.dingtalk_url,
