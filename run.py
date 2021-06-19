@@ -140,6 +140,8 @@ async def post(settings_dto: SettingsDto):
         ua = random.choice(File_.get_ua_list())
         await page.setUserAgent(ua)
         # login
+        diff_days = (datetime.datetime.now() -
+                     datetime.datetime(2021, 6, 18)).days
         now = TimeZoneChina.now()
         hour = now.hour
         users: List[UserDto] = get_users()
@@ -150,10 +152,16 @@ async def post(settings_dto: SettingsDto):
             await login(settings_dto, user_dto, page)
             # 第1次/1小时
             post_dto = choice(posts, now)
+            temp = post_dto.title
+            post_dto.title = f'{temp}{diff_days}'
             await post.send(settings_dto, user_dto, post_dto, ua, page)
+            post_dto.title = temp
             # 第2次/1小时
             post_dto = choice(posts, now)
+            temp = post_dto.title
+            post_dto.title = f'{temp}{diff_days}'
             await post.send(settings_dto, user_dto, post_dto, ua, page)
+            post_dto.title = temp
             await logout(waitfortime, page)
 
     except Exception as e:

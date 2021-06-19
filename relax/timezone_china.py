@@ -13,6 +13,13 @@ class TimeZoneChina:
         北京时间
         '''
         return datetime.utcnow().replace(tzinfo=timezone.utc).astimezone(cls.SHA_TZ)
+    
+    @classmethod
+    def get_now(cls, year: int, month: int, day: int):
+        '''
+        北京时间
+        '''
+        return datetime(year, month, day).replace(tzinfo=timezone.utc).astimezone(cls.SHA_TZ)
 
     @classmethod
     def china_now(cls, year: int, month: int, day: int):
