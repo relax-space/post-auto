@@ -50,13 +50,13 @@ def get_users():
         user_dto = users.pop(0)
         users.append(user_dto)
         return users
-    elif weekday == 3:
+    elif weekday == 3 or weekday == 6:
         user_dto = users.pop(0)
         users.append(user_dto)
         user_dto = users.pop(0)
         users.append(user_dto)
         return users
-    elif weekday == 4:
+    elif weekday == 4 or weekday == 7:
         user_dto = users.pop(0)
         users.append(user_dto)
         user_dto = users.pop(0)
