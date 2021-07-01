@@ -79,22 +79,9 @@ class Post:
         # 点击发布，并等待页面正确响应。
         await page.click("#sub_hunt_post")
 
-        msg = f'360账号:{user_dto.user_name}\n\n'
+        msg = f'职位标题:{post_dto.title}\n'
 
-        msg += f'{post_dto.class1}({post_dto.class2})\n'
-
-        msg += f'职位标题:{post_dto.title}\n'
-        msg += f'用证地区:{post_dto.province} {post_dto.city}\n'
-        msg += f'学历要求:{post_dto.edu}\n'
-        msg += f'签约方式:{post_dto.method}\n'
-        msg += f'工作性质:{post_dto.work_type}\n'
-
-        msg += f'注册情况:{post_dto.reg_status}\n'
-        msg += f'职    称:{post_dto.degree_level}\n'
-        msg += f'证书用途:{post_dto.cert_use}\n'
-        msg += f'职位薪资:{post_dto.expect_pay}/{post_dto.expect_pay_time}\n'
-        msg += f'业绩要求:{post_dto.yeji_needs}\n'
-        msg += f'详细说明:{detail}\n'
+        msg += f'360账号:{user_dto.user_name}\n\n'
 
         send_ding_talk_msg(
             settings_dto.dingtalk_url,
